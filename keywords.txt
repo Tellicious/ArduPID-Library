@@ -1,0 +1,30 @@
+#######################################
+# Syntax Coloring Map For PID Library
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+PID	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+Compute_auto 	KEYWORD2
+Compute	KEYWORD2
+SetOutputLimits	KEYWORD2
+SetTunings	KEYWORD2
+GetKp	KEYWORD2
+GetKi	KEYWORD2
+GetKd	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+AW_ON	LITERAL1
+AW_OFF	LITERAL1
+DIRECT	LITERAL1
+REVERSE	LITERAL1
