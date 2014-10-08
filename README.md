@@ -1,4 +1,4 @@
 ArduPID
 =======
 
-A PID Library for Arduino digitalized with the Tustin's method with Anti-Windup 
+A PID Library for Arduino digitalized with the Tustin's method with Anti-Windup (STILL EXPERIMENTAL!!!! NOT YET READY)
