@@ -15,7 +15,7 @@ class PID_def
   	public:
   	
     PID_def(double*,double,double,double,double,uint32_t,int,double);      //constructor  Initial tuning parameters (Output,Kp,Ki,Kd,N,T,Antiwindup,Kb)
-																		   //with sampling time in us
+																		   //with sampling time in ms
 
     virtual void Compute(double)=0;       //this is used to calculate the output, receives the error as input
                                           
@@ -42,7 +42,7 @@ class PID_def
     double _ki;                  //integral gain
     double _kd;                  //derivative gain
     double _N_d;				 //derivative filter constant N: derivative in Laplace=s/(1+s/N)
-    uint32_t _T;				 //loop time in microseconds
+    uint32_t _T;				 //loop time in milliseconds
     double _T_sec;				 //loop time in seconds
 	double _kb;					 //back calculation anti-windup gain
 	double _kf;					 //derivative filter coefficient (depends only on N) and multiplies the derivative output at the previous step

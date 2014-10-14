@@ -21,7 +21,7 @@ PID_def::PID_def(double* Output,double Kp,double Ki,double Kd,double N,uint32_t 
 	_aw=Aw;
 	_N_d=N;
 	_T=T;
-	_T_sec=(double) _T/1e6;
+	_T_sec=(double) _T/1e3;
 	_kf=(2-_N_d*_T_sec)/(2+_N_d*_T_sec);
 	_kp=Kp;
 	_kd=(2*Kd*_N_d)/(2+_N_d*_T_sec);
@@ -35,7 +35,7 @@ PID_def::PID_def(double* Output,double Kp,double Ki,double Kd,double N,uint32_t 
 	}
 	PID_def::SetSaturation(OUTMIN, OUTMAX);				//default output limit are big enough not to limit anything(I hope)
 	
-    _lastTime = micros();
+    _lastTime = millis();
     
     _e_old=0;
     _Du_d=0;
@@ -50,11 +50,11 @@ if it returns false, the program will stop, otherwise it can continue
  //---------------------------------------------------------------------------------*/
 bool PID_def::AutoCompute(double e)
 {
-	uint32_t now = micros();
+	uint32_t now = millis();
    if((now-_lastTime)>=_T){
    _lastTime=now;
 	this->Compute(e);
-    if ((micros()-_lastTime)<_T){
+    if ((millis()-_lastTime)<_T){
     *_Output=0;
     return false;
     }

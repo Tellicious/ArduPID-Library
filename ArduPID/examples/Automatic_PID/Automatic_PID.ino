@@ -9,7 +9,7 @@ double kb = 1; //back-calculation constant (README.md) to be
 double U1 = 0; //output variable 1
 double U2 = 0; //output variable 2
 double U3 = 0; //output variable 3
-uint32_t T = 20e3; //20e3us => 50Hz cycle frequency
+uint32_t T = 20; //20ms => 50Hz cycle frequency
 PID PID1(&U1, kp, ki, kd, N, T); //standard PID, no anti-windup
 PID_IC PID2(&U2, kp, ki, kd, N, T);  //PID with integrator clamping anti-windup
 PID_BC PID3(&U3, kp, ki, kd, N, T, kb); //PID with back-calculation anti-windup

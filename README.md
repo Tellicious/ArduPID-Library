@@ -12,8 +12,6 @@ This libray has some major improvements over the already existing libraries:
     - http://en.wikipedia.org/wiki/Integral_windup
     - http://www.mathworks.com/help/simulink/slref/pidcontroller.html
     - http://www.mathworks.com/help/simulink/examples/anti-windup-control-using-a-pid-controller.html
-  - The sampling time is requested in microseconds, and the AutoCompute() loop time check works with micros() too, this in order to have a more precise loop time check and avoid wasting time for applications where the loop-time is some milliseconds. 
-
 
 THE AUTOCOMPUTE AND RESET FUNCTIONS HAVE NOT BEEN TESTED YET, ALL THE OTHERS ARE WORKING PERFECTLY FINE.
 
