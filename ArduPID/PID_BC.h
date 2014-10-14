@@ -11,12 +11,13 @@ class PID_BC: public PID_def
 	public:
 
     PID_BC(double* Output,double Kp,double Ki,double Kd,double N,uint32_t T,double Kb):
-    PID_def( Output,Kp,Ki,Kd,N,T,1,Kb){_aw_bc_old=0;}  // constructor with initial tuning parameters (Output,Kp,Ki,Kd,N,T,Kb)
+    PID_def( Output,Kp,Ki,Kd,N,T,1,Kb){_aw_bc_old=0;}  //constructor with initial tuning parameters (Output,Kp,Ki,Kd,N,T,Kb)
     
-    void Compute(double);                       //  calculates the output 
+    void Compute(double);                       //calculates the output 
+	void Reset();											//restarts the PID
+	
+    private: 
      
-     private: 
-     
-     double _aw_bc_old;                          // stores the back calculation contribution at the previous step         
+    double _aw_bc_old;                          //stores the back calculation contribution of the previous step         
 };
 #endif

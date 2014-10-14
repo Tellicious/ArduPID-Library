@@ -14,7 +14,7 @@ class PID: public PID_def
     PID_def( Output,Kp,Ki,Kd,N,T,0,0){}   // constructor with initial tuning parameters (Output,Kp,Ki,Kd,N,T)
 
     void Compute(double);                       //  calculates the output 
-                                          
+    void Reset();											//restarts the PID                                    
 };
 #endif
 

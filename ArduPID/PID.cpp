@@ -11,18 +11,9 @@
 #endif
 
 #include <PID.h>
-//-----------------------------Auxiliary Functions----------------------------------//
-template <typename T, typename T2, typename T3>  T constrain2(T in, T2 inf, T3 sup)
-{
-if (in>sup){ return (T) sup;}
-else if (in<inf){ return (T) inf;}
-else{ return in;}
-}
-
- 
  
 /*--------------------------------Calculate Output-------------------------------//
-This function should be called inside a If statement that checks if the time 
+This function should be called inside an If statement that checks if the time 
 elapsed since the last step is greater or equal than the step time
  //---------------------------------------------------------------------------------*/
 void PID::Compute(double e)
@@ -32,4 +23,12 @@ void PID::Compute(double e)
 	_Du_d=_kf*_Du_d+_kd*(e-_e_old);
     _e_old=e;
     *_Output=constrain2((Du_p+_Du_i+_Du_d),_outMin,_outMax);
+}
+
+/*-------------------------------------Reset---------------------------------------//
+This function can be called everywhere in order to re-initialize the PID
+ //---------------------------------------------------------------------------------*/
+void PID::Reset()
+{
+PID_def:Reset_def();
 }

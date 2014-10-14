@@ -19,9 +19,11 @@ Compute	KEYWORD2
 SetSaturation	KEYWORD2
 SetTunings	KEYWORD2
 SetBackCalc KEYWORD2
+Reset	KEYWORD2
 GetKp	KEYWORD2
 GetKi	KEYWORD2
 GetKd	KEYWORD2
+GetKb	KEYWORD2
 
 #######################################
 ########## Constants (LITERAL1) ##########
