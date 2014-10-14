@@ -15,7 +15,7 @@ This libray has some major improvements over the already existing libraries:
   - The sampling time is requested in microseconds, and the AutoCompute() loop time check works with micros() too, this in order to have a more precise loop time check and avoid wasting time for applications where the loop-time is some milliseconds. 
 
 
-THE AUTOCOMPUTE FUNCTION HAS NOT BEEN TESTED YET, ALL THE OTHER ARE WORKING PERFECTLY FINE.
+THE AUTOCOMPUTE AND RESET FUNCTIONS HAVE NOT BEEN TESTED YET, ALL THE OTHERS ARE WORKING PERFECTLY FINE.
 
 Feel free to report any issue you encounter.
 
