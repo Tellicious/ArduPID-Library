@@ -54,7 +54,7 @@ bool PID_def::AutoCompute(double e)
    if((now-_lastTime)>=_T){
    _lastTime=now;
 	this->Compute(e);
-    if ((millis()-_lastTime)<_T){
+    if ((millis()-_lastTime)>_T){
     *_Output=0;
     return false;
     }
