@@ -70,8 +70,9 @@ This function can be called everywhere to change the PID gains after initializat
 void PID_def::SetTunings(double Kp, double Ki, double Kd,double N)
 {
    if (Kp<0 || Ki<0 || Kd<0 || N<0) return;
-   _N_d=N;
+  _N_d=N;
 	_kp=Kp;
+	_kf=(2-_N_d*_T_sec)/(2+_N_d*_T_sec);
 	_kd=(2*Kd*_N_d)/(2+_N_d*_T_sec);
 	_ki=0.5*Ki*_T_sec;
    

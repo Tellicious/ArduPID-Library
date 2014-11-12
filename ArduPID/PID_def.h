@@ -21,11 +21,11 @@ class PID_def
                                           
     bool AutoCompute(double);			  //this is used to calculate the output without the need for a loop-time check, receives the error as input
                                          
-    void SetTunings(double, double,double, double);		//this is used to change the gains after the initialization like to dynamically test their effect
+    void SetTunings(double,double,double,double);		//this is used to change the gains after the initialization like to dynamically test their effect
 										
 	void SetBackCalc(double);  		//this is used to change the Back-Calculation gain after the initialization, only effective if the PID is defined as PID_BC
 							
-	void SetSaturation(double, double);   //this is used to set the output limits: it is advisable to select an anti-windup PID if it is necessary to limit
+	void SetSaturation(double,double);   //this is used to set the output limits: it is advisable to select an anti-windup PID if it is necessary to limit
 										  						//output
 										  						
 	virtual void Reset()=0;							//restarts the PID   
