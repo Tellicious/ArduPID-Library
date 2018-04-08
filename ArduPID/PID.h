@@ -6,14 +6,11 @@
   This is the library for the standard PID (no anti-windup) 
 //-----------------------------------------------------------------*/
 
-class PID: public PID_def
-{
+class PID: public PID_def {
 	public:
-
-    PID(double* Output,double Kp,double Ki,double Kd,double N,uint32_t T):
-    PID_def( Output,Kp,Ki,Kd,N,T,0,0){}   // constructor with initial tuning parameters (Output,Kp,Ki,Kd,N,T)
-
-    void Compute(double);                       //  calculates the output 
+    PID(float* Output, float Kp, float Ki, float Kd, float N, uint32_t T):
+    PID_def(Output, Kp, Ki, Kd, N, T, 0, 0){}   // constructor with initial tuning parameters (Output,Kp,Ki,Kd,N,T), with T in ms
+    void Compute(float e);                       //  calculates the output 
     void Reset();											//restarts the PID                                    
 };
 #endif

@@ -1,14 +1,13 @@
 #include "ArduPID.h"
-double kp = 10; //proportional gain
-double ki = 4; //integral gain
-double kd = 5; //derivative gain
-double N = 100; //derivative filter constant D(s)=s/(1+s/N)
-//a good rule is: N>10*Kd/Kp (also avoid too large values)
-double kb = 1; //back-calculation constant (README.md) to be
-//set only if PID_BC used
-double U1 = 0; //output variable 1
-double U2 = 0; //output variable 2
-double U3 = 0; //output variable 3
+float kp = 10; //proportional gain
+float ki = 4; //integral gain
+float kd = 5; //derivative gain
+float N = 100; //derivative filter constant D(s)=s/(1+s/N)
+//a good rule is: N > (10 * Kd / Kp) (also avoid too large values)
+float kb = 1; //back-calculation constant (README.md) to be set only if PID_BC used
+float U1 = 0; //output variable 1
+float U2 = 0; //output variable 2
+float U3 = 0; //output variable 3
 uint32_t T = 20; //20ms => 50Hz cycle frequency
 uint32_t lastTime = 0;
 PID PID1(&U1, kp, ki, kd, N, T); //standard PID, no anti-windup
@@ -23,17 +22,20 @@ void setup() {
 }
 
 void loop() {
-  uint32_t now = micros();
+  uint32_t now = millis();
   if ((now - lastTime) >= T) {
     lastTime = now;
-    double e1 = analogRead(A1); //this is an example: the Compute function receives as input the error
-    double e2 = analogRead(A2);
-    double e3 = analogRead(A3);
-    PID1.Compute(e1);
+	float reference = 1000;
+    float actual1 = analogRead(A1);
+    float actual2 = analogRead(A2);
+    float actual3 = analogRead(A3);
+	float e1 = reference - actual1; //first error
+	float e2 = reference - actual2; //second error
+	float e3 = reference - actual3; //third error
+    PID1.Compute(e1); //The Compute function receives the error as input
     PID2.Compute(e2);
     PID3.Compute(e3);
-
-    if ((micros() - lastTime) < T) {
+    if ((millis() - lastTime) < T) { //write output only if step took less than step time
       analogWrite(4, U1); //this is just an example, using an example pin
       analogWrite(5, U2);
       analogWrite(6, U3);
@@ -50,10 +52,10 @@ void loop() {
 }
 
 /* Other functions are:
-PID.SetTunings(kp,ki,kd,N); //changes the gains
+PID.SetTunings(kp, ki, kd, N); //changes the gains
 PID.SetBackCalc(kb); //changes the back-calculation gain
-double Kp=PID.GetKp(); //gives the actual value of Kp
-double Ki=PID.GetKi(); //gives the actual value of Ki
-double Kd=PID.GetKd(); //gives the actual value of Kd
-double Kb=PID.GetKb(); //gives the actual value of Kb
+float Kp = PID.GetKp(); //gives the actual value of Kp
+float Ki = PID.GetKi(); //gives the actual value of Ki
+float Kd = PID.GetKd(); //gives the actual value of Kd
+float Kb = PID.GetKb(); //gives the actual value of Kb
 */
