@@ -36,7 +36,7 @@ void PID_IC::Compute(float e) {
 	_Du_i += _ki * (e + _e_old_i);
 	float u = _kp * e + _Du_i + _Du_d;
 	if ((((e * u) > 0) && ((u > _outMax) || (u < _outMin)))){
-		float d_int = ki * e;
+		float d_int = _ki * e;
 		_Du_i -= d_int;
 		u -= d_int;
 		_e_old_i = 0;
