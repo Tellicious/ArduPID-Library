@@ -1,6 +1,7 @@
 #ifndef PID_def_h
 #define PID_def_h
 #define LIBRARY_VERSION	1.0
+#include "stdint.h"
 
 class PID_def {
  	protected:
