@@ -10,8 +10,8 @@ class PID_IC: public PID_def {
 	public:
     PID_IC(float* Output, float Kp, float Ki, float Kd, float N, uint32_t T):
     PID_def(Output, Kp, Ki, Kd, N, T, 2, 0){_e_old_i = 0;}   //constructor with initial tuning parameters (Output,Kp,Ki,Kd,N,T), with T in ms
-    void Compute(float e);                       //calculates the output 
-    void Reset();											//restarts the PID
+    void compute(float e);                       //calculates the output 
+    void reset();											//restarts the PID
     
 	private:
     float _e_old_i;                					//stores the error of the previous step, used to calculate the integral contribution     

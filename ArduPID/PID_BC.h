@@ -10,8 +10,8 @@ class PID_BC: public PID_def {
 	public:
     PID_BC(float* Output, float Kp, float Ki, float Kd, float N, uint32_t T, float Kb):
     PID_def(Output, Kp, Ki, Kd, N, T, 1, Kb){_aw_bc_old = 0;}  //constructor with initial tuning parameters (Output,Kp,Ki,Kd,N,T,Kb), with T in ms
-    void Compute(float e);                       //calculates the output 
-	void Reset();											//restarts the PID
+    void compute(float e);                       //calculates the output 
+	void reset();											//restarts the PID
 	
     private:
     float _aw_bc_old;                          //stores the back calculation contribution of the previous step         

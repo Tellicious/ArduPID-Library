@@ -15,9 +15,9 @@ PID_IC PID2(&U2, kp, ki, kd, N, T);  //PID with integrator clamping anti-windup
 PID_BC PID3(&U3, kp, ki, kd, N, T, kb); //PID with back-calculation anti-windup
 
 void setup() {
-  PID2.SetSaturation(-1000, 1000); //sets lower and upper limit to the PID output;
+  PID2.setSaturation(-1000, 1000); //sets lower and upper limit to the PID output;
   //advisable to use an an anti-windup PID if sat needed
-  PID3.SetSaturation(-1000, 1000);
+  PID3.setSaturation(-1000, 1000);
 
 }
 
@@ -32,9 +32,9 @@ void loop() {
 	float e1 = reference - actual1; //first error
 	float e2 = reference - actual2; //second error
 	float e3 = reference - actual3; //third error
-    PID1.Compute(e1); //The Compute function receives the error as input
-    PID2.Compute(e2);
-    PID3.Compute(e3);
+    PID1.compute(e1); //The Compute function receives the error as input
+    PID2.compute(e2);
+    PID3.compute(e3);
     if ((millis() - lastTime) < T) { //write output only if step took less than step time
       analogWrite(4, U1); //this is just an example, using an example pin
       analogWrite(5, U2);
@@ -45,17 +45,17 @@ void loop() {
     lastTime = 0L;
   }
   if (digitalRead(2) == 1) { //example: if this pin is set to high, the PID are re-initialized
-    PID1.Reset();
-    PID2.Reset();
-    PID3.Reset();
+    PID1.reset();
+    PID2.reset();
+    PID3.reset();
   }
 }
 
 /* Other functions are:
-PID.SetTunings(kp, ki, kd, N); //changes the gains
-PID.SetBackCalc(kb); //changes the back-calculation gain
-float Kp = PID.GetKp(); //gives the actual value of Kp
-float Ki = PID.GetKi(); //gives the actual value of Ki
-float Kd = PID.GetKd(); //gives the actual value of Kd
-float Kb = PID.GetKb(); //gives the actual value of Kb
+PID.setTunings(kp, ki, kd, N); //changes the gains
+PID.setBackCalc(kb); //changes the back-calculation gain
+float Kp = PID.getKp(); //gives the actual value of Kp
+float Ki = PID.getKi(); //gives the actual value of Ki
+float Kd = PID.getKd(); //gives the actual value of Kd
+float Kb = PID.getKb(); //gives the actual value of Kb
 */

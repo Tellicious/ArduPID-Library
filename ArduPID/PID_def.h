@@ -12,19 +12,19 @@ class PID_def {
   
   	public:
     PID_def(float* Output,float Kp,float Ki,float Kd,float N,uint32_t T,uint8_t Aw,float Kb);      //constructor  Initial tuning parameters (Output,Kp,Ki,Kd,N,T,Antiwindup,Kb) with sampling time T in ms and N > (10 * Kd / Kp) (as a good rule of thumb)
-    virtual void Compute(float e) = 0;       //this is used to calculate the output, receives the error as input
-    bool AutoCompute(float e);			  //this is used to calculate the output without the need for a loop-time check, receives the error as input
-    void SetTunings(float Kp, float Ki, float Kd, float N);		//this is used to change the gains after the initialization like to dynamically test their effect
-	void SetBackCalc(float Kb);  		//this is used to change the Back-Calculation gain after the initialization, only effective if the PID is defined as PID_BC	
-	void SetSaturation(float Min, float Max);   //this is used to set the output limits: it is advisable to select an anti-windup PID if it is necessary to limit output
-	virtual void Reset() = 0;							//restarts the PID   
-	float GetKp();						  //these are used to check what are the gains currently used by the PID
-	float GetKi();
-	float GetKd();		
-	float GetKb();
+    virtual void compute(float e) = 0;       //this is used to calculate the output, receives the error as input
+    bool autoCompute(float e);			  //this is used to calculate the output without the need for a loop-time check, receives the error as input
+    void setTunings(float Kp, float Ki, float Kd, float N);		//this is used to change the gains after the initialization like to dynamically test their effect
+	void setBackCalc(float Kb);  		//this is used to change the Back-Calculation gain after the initialization, only effective if the PID is defined as PID_BC	
+	void setSaturation(float Min, float Max);   //this is used to set the output limits: it is advisable to select an anti-windup PID if it is necessary to limit output
+	virtual void reset() = 0;							//restarts the PID   
+	float getKp();						  //these are used to check what are the gains currently used by the PID
+	float getKi();
+	float getKd();		
+	float getKb();
 
   	protected:
-	void Reset_def();		 	 //this is called by the Reset() function of the child classes to re-initialize the PID
+	void reset_def();		 	 //this is called by the Reset() function of the child classes to re-initialize the PID
 	float _kp;                  //proportional gain
     float _ki;                  //integral gain
     float _kd;                  //derivative gain
