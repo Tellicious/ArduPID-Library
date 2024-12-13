@@ -8,7 +8,7 @@ class PID_def {
   	//Parameters
   	#define OUTMIN -1e6     //default minimum saturation value
   	#define OUTMAX 1e6	  //default maximum saturation value
-	#define constrain2(in,inf,sup) (in<inf?inf:(in>sup?sup:in))
+	#define constrain2(in,inf,sup) ((in)<(inf)?(inf):((in)>(sup)?(sup):(in)))
   
   	public:
     PID_def(float* Output,float Kp,float Ki,float Kd,float N,uint32_t T,uint8_t Aw,float Kb);      //constructor  Initial tuning parameters (Output,Kp,Ki,Kd,N,T,Antiwindup,Kb) with sampling time T in ms and N > (10 * Kd / Kp) (as a good rule of thumb)
@@ -38,7 +38,6 @@ class PID_def {
 	float _outMin, _outMax;	 //store the saturation limits
 	uint8_t _aw;					 //stores the chosen anti-windup technique (0=off, 1=Back Calculation, 2=Integrator Clamping)
 	//support variables
-	float _e_old;				 //stores the error of the previous step
 	float _Du_i,_Du_d;			 //store the integral and derivative contributions to the control action
 };
 #endif

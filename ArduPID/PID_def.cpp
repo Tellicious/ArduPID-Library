@@ -27,7 +27,6 @@ PID_def::PID_def(float* Output,float Kp,float Ki,float Kd,float N,uint32_t T,uin
 	}
 	PID_def::setSaturation(OUTMIN, OUTMAX);				//default output limit are big enough not to limit anything(I hope)
     _lastTime = millis();
-    _e_old = 0;
     _Du_d = 0;
     _Du_i = 0;
     _Output = Output;			
@@ -94,7 +93,6 @@ This function is called by the reset() function in the child classes to reset th
 support variables to 0, that means to re-initialize the PID to starting conditions.
  //---------------------------------------------------------------------------------*/
 void PID_def::reset_def() {
-	_e_old = 0;
 	_Du_i = 0;
 	_Du_d = 0;
 }
